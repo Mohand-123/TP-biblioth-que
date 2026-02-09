@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "bibliotheque.h"
+#include "../inc/bibliotheque.h"
 
 // Exercice 4 - Menu principal
 void afficher_menu(void) {

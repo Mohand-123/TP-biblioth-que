@@ -1,7 +1,14 @@
 # Fichiers exécutables
 *.exe
 *.out
+
+# Fichiers objets
 *.o
+
+# Répertoires de build
+obj/
+exe/
+lib/
 
 # Fichiers de build
 *.dll

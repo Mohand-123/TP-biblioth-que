@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "bibliotheque.h"
+#include "../inc/bibliotheque.h"
 
 // Définition des variables globales
 char nom_bibliotheque[50] = "Bibliotheque Centrale";
