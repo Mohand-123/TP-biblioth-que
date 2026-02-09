@@ -1,25 +1,16 @@
+/**
+ * Programme principal
+ */
 #include <stdio.h>
 #include <string.h>
 #include "../inc/bibliotheque.h"
 
-// Exercice 4 - Menu principal
-void afficher_menu(void) {
-    printf("\n========== MENU PRINCIPAL ==========\n");
-    printf("1. Afficher les informations\n");
-    printf("2. Ajouter un livre\n");
-    printf("3. Rechercher un livre\n");
-    printf("4. Quitter\n");
-    printf("====================================\n");
-    printf("Votre choix : ");
-}
-
 int main(void) {
     int choix;
-    char livres[10][50];  // Tableau statique de 10 livres max
+    char livres[10][50];
     char titre_recherche[50];
     int index;
     
-    // Initialiser avec les livres par défaut
     for (int i = 0; i < nb_livres; i++) {
         strcpy(livres[i], livres_initiaux[i]);
     }
@@ -29,21 +20,16 @@ int main(void) {
     do {
         afficher_menu();
         scanf("%d", &choix);
-        getchar(); // Pour consommer le \n restant
+        getchar();
         
         switch (choix) {
             case 1:
-                // Afficher les informations
                 afficher_infos();
                 break;
-                
             case 2:
-                // Ajouter un livre
                 ajouter_livre(livres, &nb_livres);
                 break;
-                
             case 3:
-                // Rechercher un livre
                 if (nb_livres == 0) {
                     printf("\nAucun livre dans la bibliotheque.\n");
                 } else {
@@ -59,16 +45,12 @@ int main(void) {
                     }
                 }
                 break;
-                
             case 4:
-                // Quitter
                 printf("\nAu revoir !\n\n");
                 break;
-                
             default:
                 printf("\nChoix invalide. Veuillez reessayer.\n");
         }
-        
     } while (choix != 4);
     
     return 0;

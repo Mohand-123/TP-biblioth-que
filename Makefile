@@ -1,45 +1,40 @@
-# Makefile pour le projet Bibliotheque avec structure organisée
+# Makefile pour le projet Bibliotheque
 
 # Utilisation de bash MSYS2 pour Windows
 SHELL = C:/msys64/usr/bin/bash.exe
-CC = gcc
-CFLAGS = -Wall -g -Iinc
 
-# Répertoires
-SRC_DIR = src
-OBJ_DIR = obj
-INC_DIR = inc
-BIN_DIR = bin
+# Regle principale
+all: bin/bibliotheque.exe
 
-# Fichiers sources
-SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/bibliotheque.c
-OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/bibliotheque.o
-TARGET = $(BIN_DIR)/bibliotheque.exe
+# Regle pour creer l'executable
+bin/bibliotheque.exe: obj/main.o obj/globals.o obj/afficher_infos.o obj/ajouter_livre.o obj/rechercher_livre.o obj/afficher_menu.o
+	gcc -Wall -g -Iinc -o bin/bibliotheque.exe obj/main.o obj/globals.o obj/afficher_infos.o obj/ajouter_livre.o obj/rechercher_livre.o obj/afficher_menu.o
 
-# Règle principale
-all: $(TARGET)
+# Regles pour compiler les fichiers objets
+obj/main.o: src/main.c inc/bibliotheque.h
+	gcc -Wall -g -Iinc -c src/main.c -o obj/main.o
 
-# Règle pour créer l'exécutable
-$(TARGET): $(OBJS) | $(BIN_DIR)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+obj/globals.o: src/globals.c inc/bibliotheque.h
+	gcc -Wall -g -Iinc -c src/globals.c -o obj/globals.o
 
-# Règle pour compiler les fichiers objets
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/bibliotheque.h | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+obj/afficher_infos.o: src/afficher_infos.c inc/bibliotheque.h
+	gcc -Wall -g -Iinc -c src/afficher_infos.c -o obj/afficher_infos.o
 
-# Créer les répertoires s'ils n'existent pas
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+obj/ajouter_livre.o: src/ajouter_livre.c inc/bibliotheque.h
+	gcc -Wall -g -Iinc -c src/ajouter_livre.c -o obj/ajouter_livre.o
 
-$(BIN_DIR):
-	mkdir -p $(BIN_DIR)
+obj/rechercher_livre.o: src/rechercher_livre.c inc/bibliotheque.h
+	gcc -Wall -g -Iinc -c src/rechercher_livre.c -o obj/rechercher_livre.o
 
-# Règle pour nettoyer
+obj/afficher_menu.o: src/afficher_menu.c inc/bibliotheque.h
+	gcc -Wall -g -Iinc -c src/afficher_menu.c -o obj/afficher_menu.o
+
+# Regle pour nettoyer
 clean:
-	rm -rf $(OBJ_DIR)/*.o $(BIN_DIR)/*.exe
+	rm -rf obj/*.o bin/*.exe
 
-# Règle pour exécuter
+# Regle pour executer
 run: all
-	$(TARGET)
+	bin/bibliotheque.exe
 
 .PHONY: all clean run
