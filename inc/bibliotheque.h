@@ -11,5 +11,6 @@ extern char livres_initiaux[10][50];
 void afficher_infos(void);
 void ajouter_livre(char livres[][50], int *nb_livres);
 int rechercher_livre(char livres[][50], int nb_livres, char *titre);
+void afficher_menu(char livres[][50], int *nb_livres);
 
 #endif

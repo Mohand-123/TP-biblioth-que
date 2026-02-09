@@ -1,14 +1,11 @@
 # Makefile pour le projet Bibliotheque
 
-# Utilisation de bash MSYS2 pour Windows
-SHELL = C:/msys64/usr/bin/bash.exe
-
 # Regle principale
-all: bin/bibliotheque.exe
+all: exe/bibliotheque.exe
 
 # Regle pour creer l'executable
-bin/bibliotheque.exe: obj/main.o obj/globals.o obj/afficher_infos.o obj/ajouter_livre.o obj/rechercher_livre.o obj/afficher_menu.o
-	gcc -Wall -g -Iinc -o bin/bibliotheque.exe obj/main.o obj/globals.o obj/afficher_infos.o obj/ajouter_livre.o obj/rechercher_livre.o obj/afficher_menu.o
+exe/bibliotheque.exe: obj/main.o obj/globals.o obj/afficher_infos.o obj/ajouter_livre.o obj/rechercher_livre.o obj/afficher_menu.o
+	gcc -Wall -g -Iinc -o exe/bibliotheque.exe obj/main.o obj/globals.o obj/afficher_infos.o obj/ajouter_livre.o obj/rechercher_livre.o obj/afficher_menu.o
 
 # Regles pour compiler les fichiers objets
 obj/main.o: src/main.c inc/bibliotheque.h
@@ -31,10 +28,10 @@ obj/afficher_menu.o: src/afficher_menu.c inc/bibliotheque.h
 
 # Regle pour nettoyer
 clean:
-	rm -rf obj/*.o bin/*.exe
+	rm -rf obj/*.o exe/*.exe
 
 # Regle pour executer
 run: all
-	bin/bibliotheque.exe
+	exe/bibliotheque.exe
 
 .PHONY: all clean run
