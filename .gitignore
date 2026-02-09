@@ -7,8 +7,7 @@
 
 # Répertoires de build
 obj/
-exe/
-lib/
+bin/
 
 # Fichiers de build
 *.dll

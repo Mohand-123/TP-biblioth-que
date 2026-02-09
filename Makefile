@@ -9,19 +9,18 @@ CFLAGS = -Wall -g -Iinc
 SRC_DIR = src
 OBJ_DIR = obj
 INC_DIR = inc
-EXE_DIR = exe
-LIB_DIR = lib
+BIN_DIR = bin
 
 # Fichiers sources
 SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/bibliotheque.c
 OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/bibliotheque.o
-TARGET = $(EXE_DIR)/bibliotheque.exe
+TARGET = $(BIN_DIR)/bibliotheque.exe
 
 # Règle principale
 all: $(TARGET)
 
 # Règle pour créer l'exécutable
-$(TARGET): $(OBJS) | $(EXE_DIR)
+$(TARGET): $(OBJS) | $(BIN_DIR)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
 # Règle pour compiler les fichiers objets
@@ -32,12 +31,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/bibliotheque.h | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(EXE_DIR):
-	mkdir -p $(EXE_DIR)
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
 
 # Règle pour nettoyer
 clean:
-	rm -rf $(OBJ_DIR)/*.o $(EXE_DIR)/*.exe
+	rm -rf $(OBJ_DIR)/*.o $(BIN_DIR)/*.exe
 
 # Règle pour exécuter
 run: all
