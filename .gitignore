@@ -1,0 +1,14 @@
+# Fichiers exécutables
+*.exe
+*.out
+*.o
+
+# Fichiers de build
+*.dll
+*.so
+*.dylib
+
+# Fichiers temporaires
+*.swp
+*.swo
+*~
